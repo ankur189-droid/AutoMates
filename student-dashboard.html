@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard | Gradly</title>
+  <link rel="stylesheet" href="style1.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- Dashboard Header -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <img src="gradly_logo_transparent.png" alt="Gradly Logo" class="logo-small" />
+      <div class="header-right">
+        <span class="user-badge" id="studentName">Student</span>
+        <button class="btn-logout" onclick="logout()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+          </svg>
+          Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dashboard Container -->
+  <div class="dashboard-container">
+    <h1 class="dashboard-title">Welcome Back, <span id="userName">Student</span>!</h1>
+    <p class="dashboard-subtitle">Track your applications and manage your profile</p>
+
+    <!-- Application Status -->
+    <div class="dashboard-stats">
+      <div class="stat-card">
+        <div class="stat-icon" style="background: linear-gradient(135deg, #2ec4b6, #20a89d);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <h3>3</h3>
+          <p>Active Applications</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <h3>1</h3>
+          <p>Under Review</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <h3>2</h3>
+          <p>Accepted</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon" style="background: linear-gradient(135deg, #ffd93d, #ff9a3c);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+            <path d="M12 8v4M12 16h.01"/>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <h3>85%</h3>
+          <p>Profile Complete</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <h2>Quick Actions</h2>
+      <div class="action-grid">
+        <button class="action-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          New Application
+        </button>
+        <button class="action-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          Update Profile
+        </button>
+        <button class="action-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          Upload Documents
+        </button>
+        <button class="action-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Support
+        </button>
+      </div>
+    </div>
+
+    <!-- My Applications -->
+    <div class="recent-applications">
+      <h2>My Applications</h2>
+      <div class="applications-list">
+        <div class="application-card">
+          <div class="app-header">
+            <div>
+              <h3>Bachelor of Computer Science</h3>
+              <p class="app-id">#APP001234</p>
+            </div>
+            <span class="status-badge pending">Under Review</span>
+          </div>
+          <div class="app-details">
+            <div class="detail-item">
+              <span class="label">University:</span>
+              <span class="value">Tech University</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Applied:</span>
+              <span class="value">Jan 28, 2026</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Deadline:</span>
+              <span class="value">Feb 15, 2026</span>
+            </div>
+          </div>
+          <div class="app-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 75%;"></div>
+            </div>
+            <span class="progress-text">75% Complete</span>
+          </div>
+          <button class="btn-primary-small">View Details</button>
+        </div>
+
+        <div class="application-card">
+          <div class="app-header">
+            <div>
+              <h3>Master of Business Administration</h3>
+              <p class="app-id">#APP001189</p>
+            </div>
+            <span class="status-badge approved">Accepted</span>
+          </div>
+          <div class="app-details">
+            <div class="detail-item">
+              <span class="label">University:</span>
+              <span class="value">Business School</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Applied:</span>
+              <span class="value">Jan 15, 2026</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Decision:</span>
+              <span class="value">Jan 29, 2026</span>
+            </div>
+          </div>
+          <div class="app-progress">
+            <div class="progress-bar">
+              <div class="progress-fill approved" style="width: 100%;"></div>
+            </div>
+            <span class="progress-text">Completed</span>
+          </div>
+          <button class="btn-primary-small">View Offer Letter</button>
+        </div>
+
+        <div class="application-card">
+          <div class="app-header">
+            <div>
+              <h3>Bachelor of Engineering</h3>
+              <p class="app-id">#APP001098</p>
+            </div>
+            <span class="status-badge approved">Accepted</span>
+          </div>
+          <div class="app-details">
+            <div class="detail-item">
+              <span class="label">University:</span>
+              <span class="value">Engineering College</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Applied:</span>
+              <span class="value">Jan 10, 2026</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Decision:</span>
+              <span class="value">Jan 25, 2026</span>
+            </div>
+          </div>
+          <div class="app-progress">
+            <div class="progress-bar">
+              <div class="progress-fill approved" style="width: 100%;"></div>
+            </div>
+            <span class="progress-text">Completed</span>
+          </div>
+          <button class="btn-primary-small">View Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Check if user is authenticated as student
+    window.addEventListener('DOMContentLoaded', () => {
+      const userRole = sessionStorage.getItem('userRole');
+      const userName = sessionStorage.getItem('userName') || 'Student';
+      
+      if (userRole !== 'student') {
+        window.location.href = 'login1.html';
+      }
+
+      // Update user name in dashboard
+      document.getElementById('userName').textContent = userName;
+      document.getElementById('studentName').textContent = userName;
+    });
+
+    function logout() {
+      sessionStorage.clear();
+      window.location.href = 'login1.html';
+    }
+  </script>
+</body>
+</html>
