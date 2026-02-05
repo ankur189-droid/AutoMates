@@ -1,3 +1,8 @@
+// ============================================
+// GRADLY - Main JavaScript
+// AI-Powered College Admission Platform
+// ============================================
+
 // Configuration
 const GOOGLE_CLIENT_ID = "913767102068-5a9m5phgec10gc2uvreqkeum8pskjbu0.apps.googleusercontent.com";
 
@@ -9,9 +14,12 @@ const ADMIN_CREDENTIALS = {
 
 let selectedRole = "student";
 
-// ===== INITIALIZATION =====
+// ============================================
+// INITIALIZATION
+// ============================================
+
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('Gradly App Loaded');
+  console.log('Gradly v2.0 - Modern Professional Design Loaded ✓');
   
   // Initialize scroll animations
   initScrollAnimations();
@@ -21,9 +29,15 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Check for auto-redirect on login page
   checkAutoRedirect();
+  
+  // Initialize mobile menu
+  initMobileMenu();
 });
 
-// ===== SCROLL ANIMATIONS =====
+// ============================================
+// SCROLL ANIMATIONS
+// ============================================
+
 function initScrollAnimations() {
   const observerOptions = {
     threshold: 0.1,
@@ -38,38 +52,30 @@ function initScrollAnimations() {
     });
   }, observerOptions);
 
-  const fadeElements = document.querySelectorAll('.fade-in-on-scroll');
+  const fadeElements = document.querySelectorAll('[data-aos]');
   fadeElements.forEach(el => observer.observe(el));
 }
 
-// ===== SMOOTH SCROLLING =====
-function scrollToFeatures() {
-  const featuresSection = document.getElementById('features');
-  if (featuresSection) {
-    featuresSection.scrollIntoView({ 
-      behavior: 'smooth',
-      block: 'start'
-    });
-  }
-}
+// ============================================
+// COUNTER ANIMATIONS
+// ============================================
 
-// ===== COUNTER ANIMATIONS =====
 function initCounterAnimations() {
-  const statNumbers = document.querySelectorAll('.stat-number');
+  const statValues = document.querySelectorAll('.stat-value[data-count]');
   
-  if (statNumbers.length === 0) return;
+  if (statValues.length === 0) return;
   
   const counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-        const target = parseInt(entry.target.getAttribute('data-target'));
+        const target = parseInt(entry.target.getAttribute('data-count'));
         animateCounter(entry.target, target);
         entry.target.classList.add('counted');
       }
     });
   }, { threshold: 0.5 });
 
-  statNumbers.forEach(stat => counterObserver.observe(stat));
+  statValues.forEach(stat => counterObserver.observe(stat));
 }
 
 function animateCounter(element, target, duration = 2000) {
@@ -87,14 +93,39 @@ function animateCounter(element, target, duration = 2000) {
   }, 16);
 }
 
-// ===== ROLE SELECTION =====
+// ============================================
+// MOBILE MENU
+// ============================================
+
+function initMobileMenu() {
+  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+  }
+}
+
+function toggleMobileMenu() {
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (mobileMenu) {
+    mobileMenu.classList.toggle('active');
+  }
+}
+
+// ============================================
+// ROLE SELECTION
+// ============================================
+
 function selectRole(role) {
   selectedRole = role;
   
   // Update button states
-  const buttons = document.querySelectorAll(".role-btn");
+  const buttons = document.querySelectorAll(".role-tab");
   buttons.forEach(btn => btn.classList.remove("active"));
-  event.target.closest('.role-btn').classList.add("active");
+  event.target.closest('.role-tab').classList.add("active");
   
   // Show/hide Google login based on role
   const socialContainer = document.getElementById('socialLoginContainer');
@@ -103,7 +134,10 @@ function selectRole(role) {
   }
 }
 
-// ===== GOOGLE SIGN-IN HANDLER =====
+// ============================================
+// GOOGLE SIGN-IN HANDLER
+// ============================================
+
 function handleGoogleSignIn(response) {
   if (selectedRole !== 'student') {
     showNotification("Google Sign-In is only available for students", "error");
@@ -151,7 +185,10 @@ function parseJwt(token) {
   }
 }
 
-// ===== TRADITIONAL LOGIN =====
+// ============================================
+// TRADITIONAL LOGIN
+// ============================================
+
 function login() {
   const usernameInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");
@@ -166,7 +203,7 @@ function login() {
     return;
   }
 
-  const loginBtn = document.querySelector('.btn.primary.full');
+  const loginBtn = document.querySelector('.login-btn');
   if (!loginBtn) return;
   
   const originalContent = loginBtn.innerHTML;
@@ -217,7 +254,10 @@ function resetButton(btn, content) {
   }
 }
 
-// ===== ENTER KEY SUPPORT =====
+// ============================================
+// ENTER KEY SUPPORT
+// ============================================
+
 document.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     const username = document.getElementById('username');
@@ -231,10 +271,13 @@ document.addEventListener('keypress', (e) => {
   }
 });
 
-// ===== AUTO REDIRECT =====
+// ============================================
+// AUTO REDIRECT
+// ============================================
+
 function checkAutoRedirect() {
   // Only check on login page
-  if (!window.location.pathname.includes('login1.html')) return;
+  if (!window.location.pathname.includes('login.html')) return;
   
   const userRole = sessionStorage.getItem('userRole');
   if (userRole === 'admin') {
@@ -244,16 +287,22 @@ function checkAutoRedirect() {
   }
 }
 
-// ===== LOGOUT =====
+// ============================================
+// LOGOUT
+// ============================================
+
 function logout() {
   sessionStorage.clear();
   showNotification("Logged out successfully", "success");
   setTimeout(() => {
-    window.location.href = 'login1.html';
+    window.location.href = 'login.html';
   }, 1000);
 }
 
-// ===== NOTIFICATION SYSTEM =====
+// ============================================
+// NOTIFICATION SYSTEM
+// ============================================
+
 function showNotification(message, type = "info") {
   // Remove existing notification
   const existing = document.querySelector('.notification');
@@ -263,30 +312,6 @@ function showNotification(message, type = "info") {
   notification.className = `notification notification-${type}`;
   notification.textContent = message;
   
-  const colors = {
-    success: '#2ec4b6',
-    error: '#ff6b6b',
-    info: '#0f2a44'
-  };
-  
-  Object.assign(notification.style, {
-    position: 'fixed',
-    top: '20px',
-    right: '20px',
-    padding: '16px 24px',
-    borderRadius: '12px',
-    backgroundColor: colors[type] || colors.info,
-    color: 'white',
-    fontWeight: '500',
-    boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
-    zIndex: '10000',
-    animation: 'slideInRight 0.4s ease-out',
-    maxWidth: '350px',
-    fontSize: '14px',
-    lineHeight: '1.5',
-    fontFamily: 'Work Sans, sans-serif'
-  });
-
   document.body.appendChild(notification);
 
   setTimeout(() => {
@@ -295,7 +320,10 @@ function showNotification(message, type = "info") {
   }, 3500);
 }
 
-// ===== LOADING OVERLAY =====
+// ============================================
+// LOADING OVERLAY
+// ============================================
+
 function showLoadingOverlay() {
   const overlay = document.createElement('div');
   overlay.className = 'loading-overlay';
@@ -304,111 +332,52 @@ function showLoadingOverlay() {
     <p>Loading your dashboard...</p>
   `;
   
-  Object.assign(overlay.style, {
-    position: 'fixed',
-    top: '0',
-    left: '0',
-    width: '100%',
-    height: '100%',
-    background: 'rgba(15, 42, 68, 0.95)',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: '9999',
-    color: 'white',
-    fontSize: '18px',
-    fontFamily: 'Work Sans, sans-serif'
-  });
+  // Add styles
+  overlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(5, 10, 10, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    color: white;
+  `;
+  
+  const spinner = document.createElement('style');
+  spinner.textContent = `
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(46, 196, 182, 0.2);
+      border-top: 4px solid #2ec4b6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  `;
+  document.head.appendChild(spinner);
   
   document.body.appendChild(overlay);
 }
 
-// ===== PARALLAX EFFECT =====
-if (window.innerWidth > 768) {
-  let mouseMoveTimeout;
-  
-  document.addEventListener('mousemove', (e) => {
-    clearTimeout(mouseMoveTimeout);
-    
-    mouseMoveTimeout = setTimeout(() => {
-      const orbs = document.querySelectorAll('.gradient-orb');
-      const x = e.clientX / window.innerWidth;
-      const y = e.clientY / window.innerHeight;
+// ============================================
+// SMOOTH SCROLLING
+// ============================================
 
-      orbs.forEach((orb, index) => {
-        const speed = (index + 1) * 0.3;
-        const xOffset = (x - 0.5) * 80 * speed;
-        const yOffset = (y - 0.5) * 80 * speed;
-        
-        orb.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
-      });
-    }, 10);
-  });
+function scrollToFeatures() {
+  const featuresSection = document.getElementById('features');
+  if (featuresSection) {
+    featuresSection.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
 }
-
-// ===== ADD CSS ANIMATIONS =====
-const styleSheet = document.createElement("style");
-styleSheet.textContent = `
-  @keyframes slideInRight {
-    from { 
-      transform: translateX(400px); 
-      opacity: 0; 
-    }
-    to { 
-      transform: translateX(0); 
-      opacity: 1; 
-    }
-  }
-  
-  @keyframes slideOutRight {
-    from { 
-      transform: translateX(0); 
-      opacity: 1; 
-    }
-    to { 
-      transform: translateX(400px); 
-      opacity: 0; 
-    }
-  }
-
-  .loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid rgba(46, 196, 182, 0.3);
-    border-top: 4px solid #2ec4b6;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-bottom: 20px;
-  }
-
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-  .loading-overlay p {
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    animation: pulse 1.5s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
-  }
-
-  .fade-in-on-scroll {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-
-  .fade-in-on-scroll.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-document.head.appendChild(styleSheet);
 
 console.log('Gradly v2.0 - All Systems Ready ✓');

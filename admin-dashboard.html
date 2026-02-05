@@ -4,199 +4,434 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Dashboard | Gradly</title>
-  <link rel="stylesheet" href="style1.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script defer type="module" src="main.js"></script>
 </head>
-<body>
+<body class="dashboard-page admin">
 
-  <!-- Animated Background -->
-  <div class="animated-bg">
-    <div class="gradient-orb orb-1"></div>
-    <div class="gradient-orb orb-2"></div>
-    <div class="gradient-orb orb-3"></div>
-    <div class="grid-overlay"></div>
-  </div>
+  <!-- Metaball Background -->
+  <div id="container"></div>
 
   <!-- Dashboard Header -->
   <header class="dashboard-header">
-    <div class="header-content">
-      <img src="gradly_logo_transparent.png" alt="Gradly Logo" class="logo-small" />
-      <div class="header-right">
-        <span class="user-badge">Admin</span>
-        <button class="btn-logout" onclick="logout()">
+    <div class="dashboard-header-inner">
+      <div class="header-logo" onclick="window.location.href='index.html'">
+        <img src="gradly_logo_transparent.png" alt="Gradly" class="header-logo-img">
+      </div>
+      <div class="header-actions">
+        <div class="user-info">
+          <span class="user-name">Administrator</span>
+          <span class="user-role">Admin</span>
+        </div>
+        <button class="logout-btn" onclick="logout()">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
           </svg>
-          Logout
+          <span>Logout</span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Dashboard Container -->
-  <div class="dashboard-container">
-    <h1 class="dashboard-title">Admin Dashboard</h1>
-    <p class="dashboard-subtitle">Manage applications, students, and admission processes</p>
+  <!-- Main Dashboard Content -->
+  <main class="dashboard-main">
+    <div class="dashboard-container">
+      
+      <!-- Welcome Section -->
+      <section class="welcome-section">
+        <div class="welcome-content">
+          <h1>Admin Dashboard</h1>
+          <p>Manage applications, students, and admission processes</p>
+        </div>
+        <div class="welcome-actions">
+          <button class="btn-primary-small" onclick="showNotification('Report generated!', 'success')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Export Report
+          </button>
+        </div>
+      </section>
 
-    <!-- Stats Overview -->
-    <div class="dashboard-stats">
-      <div class="stat-card">
-        <div class="stat-icon" style="background: linear-gradient(135deg, #2ec4b6, #20a89d);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="8.5" cy="7" r="4"/>
-            <path d="M20 8v6M23 11h-6"/>
-          </svg>
+      <!-- Stats Overview -->
+      <section class="stats-row">
+        <div class="stat-card-mini">
+          <div class="stat-icon blue">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number">1,234</span>
+            <span class="stat-label">Total Applications</span>
+          </div>
         </div>
-        <div class="stat-info">
-          <h3>1,234</h3>
-          <p>Total Applications</p>
+        <div class="stat-card-mini">
+          <div class="stat-icon orange">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number">156</span>
+            <span class="stat-label">Pending Review</span>
+          </div>
         </div>
-      </div>
+        <div class="stat-card-mini">
+          <div class="stat-icon green">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number">892</span>
+            <span class="stat-label">Approved</span>
+          </div>
+        </div>
+        <div class="stat-card-mini">
+          <div class="stat-icon red">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="15" y1="9" x2="9" y2="15"/>
+              <line x1="9" y1="9" x2="15" y2="15"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number">186</span>
+            <span class="stat-label">Rejected</span>
+          </div>
+        </div>
+      </section>
 
-      <div class="stat-card">
-        <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-          </svg>
+      <!-- Quick Actions -->
+      <section class="quick-actions-section">
+        <h2 class="section-heading">Quick Actions</h2>
+        <div class="actions-grid">
+          <button class="action-card" onclick="showNotification('Review mode activated!', 'info')">
+            <div class="action-icon primary">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+              </svg>
+            </div>
+            <span class="action-label">Review Applications</span>
+          </button>
+          <button class="action-card" onclick="showNotification('Student management opened!', 'info')">
+            <div class="action-icon secondary">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <span class="action-label">Manage Students</span>
+          </button>
+          <button class="action-card" onclick="showNotification('Program settings opened!', 'info')">
+            <div class="action-icon accent">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+            </div>
+            <span class="action-label">Manage Programs</span>
+          </button>
+          <button class="action-card" onclick="showNotification('Analytics dashboard opened!', 'info')">
+            <div class="action-icon teal">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+            </div>
+            <span class="action-label">View Analytics</span>
+          </button>
         </div>
-        <div class="stat-info">
-          <h3>156</h3>
-          <p>Pending Reviews</p>
-        </div>
-      </div>
+      </section>
 
-      <div class="stat-card">
-        <div class="stat-icon" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-            <polyline points="22 4 12 14.01 9 11.01"/>
-          </svg>
+      <!-- Pending Applications Table -->
+      <section class="applications-section">
+        <div class="section-header-row">
+          <h2 class="section-heading">Pending Applications</h2>
+          <div class="filter-actions">
+            <select class="filter-select" onchange="filterApplications(this.value)">
+              <option value="all">All Programs</option>
+              <option value="btech">B.Tech</option>
+              <option value="bca">BCA</option>
+              <option value="mba">MBA</option>
+            </select>
+          </div>
         </div>
-        <div class="stat-info">
-          <h3>892</h3>
-          <p>Approved</p>
+        <div class="data-table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Student Name</th>
+                <th>Application ID</th>
+                <th>Program</th>
+                <th>Percentage</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="student-cell">
+                    <div class="student-avatar">JD</div>
+                    <span>John Doe</span>
+                  </div>
+                </td>
+                <td class="mono">#APP001234</td>
+                <td>B.Tech CSE</td>
+                <td><span class="percentage-badge high">87%</span></td>
+                <td>Jan 30, 2026</td>
+                <td><span class="status-badge pending">Pending</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon-action approve" onclick="showNotification('Application approved!', 'success')" title="Approve">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </button>
+                    <button class="btn-icon-action reject" onclick="showNotification('Application rejected!', 'error')" title="Reject">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                      </svg>
+                    </button>
+                    <button class="btn-icon-action view" onclick="showNotification('Viewing application...', 'info')" title="View">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="student-cell">
+                    <div class="student-avatar">JS</div>
+                    <span>Jane Smith</span>
+                  </div>
+                </td>
+                <td class="mono">#APP001235</td>
+                <td>B.Tech IT</td>
+                <td><span class="percentage-badge high">82%</span></td>
+                <td>Jan 30, 2026</td>
+                <td><span class="status-badge pending">Pending</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon-action approve" onclick="showNotification('Application approved!', 'success')" title="Approve">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </button>
+                    <button class="btn-icon-action reject" onclick="showNotification('Application rejected!', 'error')" title="Reject">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                      </svg>
+                    </button>
+                    <button class="btn-icon-action view" onclick="showNotification('Viewing application...', 'info')" title="View">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="student-cell">
+                    <div class="student-avatar">MJ</div>
+                    <span>Mike Johnson</span>
+                  </div>
+                </td>
+                <td class="mono">#APP001236</td>
+                <td>BCA</td>
+                <td><span class="percentage-badge medium">75%</span></td>
+                <td>Jan 29, 2026</td>
+                <td><span class="status-badge pending">Pending</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon-action approve" onclick="showNotification('Application approved!', 'success')" title="Approve">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </button>
+                    <button class="btn-icon-action reject" onclick="showNotification('Application rejected!', 'error')" title="Reject">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                      </svg>
+                    </button>
+                    <button class="btn-icon-action view" onclick="showNotification('Viewing application...', 'info')" title="View">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="student-cell">
+                    <div class="student-avatar">SW</div>
+                    <span>Sarah Williams</span>
+                  </div>
+                </td>
+                <td class="mono">#APP001237</td>
+                <td>MBA</td>
+                <td><span class="percentage-badge low">68%</span></td>
+                <td>Jan 29, 2026</td>
+                <td><span class="status-badge pending">Pending</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon-action approve" onclick="showNotification('Application approved!', 'success')" title="Approve">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </button>
+                    <button class="btn-icon-action reject" onclick="showNotification('Application rejected!', 'error')" title="Reject">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                      </svg>
+                    </button>
+                    <button class="btn-icon-action view" onclick="showNotification('Viewing application...', 'info')" title="View">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      </div>
+      </section>
 
-      <div class="stat-card">
-        <div class="stat-icon" style="background: linear-gradient(135deg, #ff6b6b, #ee5a6f);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="15" y1="9" x2="9" y2="15"/>
-            <line x1="9" y1="9" x2="15" y2="15"/>
-          </svg>
+      <!-- Program Statistics -->
+      <section class="programs-stats-section">
+        <h2 class="section-heading">Program Statistics</h2>
+        <div class="programs-stats-grid">
+          <div class="program-stat-card">
+            <div class="program-header">
+              <h4>B.Tech CSE</h4>
+              <span class="program-cutoff">85% Cutoff</span>
+            </div>
+            <div class="program-stats">
+              <div class="prog-stat">
+                <span class="prog-value">245</span>
+                <span class="prog-label">Applied</span>
+              </div>
+              <div class="prog-stat">
+                <span class="prog-value">189</span>
+                <span class="prog-label">Approved</span>
+              </div>
+              <div class="prog-stat">
+                <span class="prog-value">56</span>
+                <span class="prog-label">Pending</span>
+              </div>
+            </div>
+          </div>
+          <div class="program-stat-card">
+            <div class="program-header">
+              <h4>B.Tech IT</h4>
+              <span class="program-cutoff">80% Cutoff</span>
+            </div>
+            <div class="program-stats">
+              <div class="prog-stat">
+                <span class="prog-value">198</span>
+                <span class="prog-label">Applied</span>
+              </div>
+              <div class="prog-stat">
+                <span class="prog-value">156</span>
+                <span class="prog-label">Approved</span>
+              </div>
+              <div class="prog-stat">
+                <span class="prog-value">42</span>
+                <span class="prog-label">Pending</span>
+              </div>
+            </div>
+          </div>
+          <div class="program-stat-card">
+            <div class="program-header">
+              <h4>BCA</h4>
+              <span class="program-cutoff">70% Cutoff</span>
+            </div>
+            <div class="program-stats">
+              <div class="prog-stat">
+                <span class="prog-value">312</span>
+                <span class="prog-label">Applied</span>
+              </div>
+              <div class="prog-stat">
+                <span class="prog-value">267</span>
+                <span class="prog-label">Approved</span>
+              </div>
+              <div class="prog-stat">
+                <span class="prog-value">45</span>
+                <span class="prog-label">Pending</span>
+              </div>
+            </div>
+          </div>
+          <div class="program-stat-card">
+            <div class="program-header">
+              <h4>MBA</h4>
+              <span class="program-cutoff">70% Cutoff</span>
+            </div>
+            <div class="program-stats">
+              <div class="prog-stat">
+                <span class="prog-value">178</span>
+                <span class="prog-label">Applied</span>
+              </div>
+              <div class="prog-stat">
+                <span class="prog-value">134</span>
+                <span class="prog-label">Approved</span>
+              </div>
+              <div class="prog-stat">
+                <span class="prog-value">44</span>
+                <span class="prog-label">Pending</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="stat-info">
-          <h3>186</h3>
-          <p>Rejected</p>
-        </div>
-      </div>
+      </section>
+
     </div>
-
-    <!-- Quick Actions -->
-    <div class="quick-actions">
-      <h2>Quick Actions</h2>
-      <div class="action-grid">
-        <button class="action-btn">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-          </svg>
-          Review Applications
-        </button>
-        <button class="action-btn">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-          Manage Students
-        </button>
-        <button class="action-btn">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="12" y1="1" x2="12" y2="23"/>
-            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-          </svg>
-          Generate Reports
-        </button>
-        <button class="action-btn">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="3"/>
-            <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.25M15.54 15.54l4.24 4.25M1 12h6M17 12h6M4.22 19.78l4.24-4.25M15.54 8.46l4.24-4.25"/>
-          </svg>
-          Settings
-        </button>
-      </div>
-    </div>
-
-    <!-- Recent Applications Table -->
-    <div class="recent-applications">
-      <h2>Recent Applications</h2>
-      <div class="table-container">
-        <table class="applications-table">
-          <thead>
-            <tr>
-              <th>Student Name</th>
-              <th>Application ID</th>
-              <th>Program</th>
-              <th>Date</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>John Doe</td>
-              <td>#APP001234</td>
-              <td>Computer Science</td>
-              <td>Jan 30, 2026</td>
-              <td><span class="status-badge pending">Pending</span></td>
-              <td><button class="btn-action">Review</button></td>
-            </tr>
-            <tr>
-              <td>Jane Smith</td>
-              <td>#APP001235</td>
-              <td>Engineering</td>
-              <td>Jan 30, 2026</td>
-              <td><span class="status-badge pending">Pending</span></td>
-              <td><button class="btn-action">Review</button></td>
-            </tr>
-            <tr>
-              <td>Mike Johnson</td>
-              <td>#APP001236</td>
-              <td>Business Admin</td>
-              <td>Jan 29, 2026</td>
-              <td><span class="status-badge approved">Approved</span></td>
-              <td><button class="btn-action">View</button></td>
-            </tr>
-            <tr>
-              <td>Sarah Williams</td>
-              <td>#APP001237</td>
-              <td>Medicine</td>
-              <td>Jan 29, 2026</td>
-              <td><span class="status-badge rejected">Rejected</span></td>
-              <td><button class="btn-action">View</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+  </main>
 
   <script>
-    // Check if user is authenticated as admin
+    // Check authentication
     window.addEventListener('DOMContentLoaded', () => {
       const userRole = sessionStorage.getItem('userRole');
       if (userRole !== 'admin') {
-        window.location.href = 'login1.html';
+        window.location.href = 'login.html';
       }
     });
 
     function logout() {
       sessionStorage.clear();
-      window.location.href = 'login1.html';
+      showNotification('Logged out successfully', 'success');
+      setTimeout(() => {
+        window.location.href = 'login.html';
+      }, 1000);
+    }
+
+    function filterApplications(value) {
+      showNotification(`Filtered by: ${value}`, 'info');
     }
   </script>
+  <script src="script.js"></script>
 </body>
 </html>

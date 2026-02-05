@@ -3,206 +3,333 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gradly - Smart College Admission Platform</title>
-  <link rel="stylesheet" href="style1.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Gradly - AI-Powered College Admission Platform</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer type="module" src="main.js"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body class="home-body">
 
-  <!-- Animated Background -->
-  <div class="animated-bg">
-    <div class="gradient-orb orb-1"></div>
-    <div class="gradient-orb orb-2"></div>
-    <div class="gradient-orb orb-3"></div>
-    <div class="grid-overlay"></div>
-  </div>
+  <!-- Metaball Background -->
+  <div id="container"></div>
 
-  <div class="home-container">
-    <div class="logo-container">
-      <img src="gradly_logo_transparent.png" alt="Gradly Logo" class="home-logo" />
-    </div>
-
-    <h1 class="tagline">
-      <span class="highlight">AI-Powered</span> Smart Automation System<br>
-      for <span class="highlight-alt">College Admission Process</span>
-    </h1>
-
-    <p class="subtitle">
-      Streamline applications, automate document verification, and make data-driven admission decisions with cutting-edge artificial intelligence.
-    </p>
-
-    <div class="home-buttons">
-      <a href="login1.html" class="btn primary">
-        <span>Get Started</span>
-        <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </a>
-      <button class="btn secondary" onclick="scrollToFeatures()">
-        <span>Learn More</span>
+  <!-- Navigation Header -->
+  <header class="main-header">
+    <div class="header-inner">
+      <div class="logo-wrapper" onclick="window.location.href='index.html'">
+        <img src="gradly_logo_transparent.png" alt="Gradly Logo" class="main-logo">
+      </div>
+      <nav class="main-nav">
+        <a href="#features" class="nav-item">Features</a>
+        <a href="#how-it-works" class="nav-item">How It Works</a>
+        <a href="#programs" class="nav-item">Programs</a>
+        <a href="login.html" class="nav-cta">Get Started</a>
+      </nav>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
     </div>
+  </header>
 
-    <!-- Features Section -->
-    <div class="features-grid" id="features">
-      <div class="feature-card fade-in-on-scroll">
-        <div class="feature-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-          </svg>
-        </div>
-        <h3>Instant Processing</h3>
-        <p>AI-powered document verification in seconds, not days</p>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#features" class="mobile-nav-item">Features</a>
+    <a href="#how-it-works" class="mobile-nav-item">How It Works</a>
+    <a href="#programs" class="mobile-nav-item">Programs</a>
+    <a href="login.html" class="mobile-nav-cta">Get Started</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        AI-Powered Admission Platform
       </div>
-
-      <div class="feature-card fade-in-on-scroll">
-        <div class="feature-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <h1 class="hero-title">
+        Smart Automation for
+        <span class="gradient-text">College Admissions</span>
+      </h1>
+      <p class="hero-description">
+        Streamline your college application process with AI-driven document verification, 
+        instant eligibility checks, and seamless application tracking. Join thousands of 
+        students achieving their academic dreams.
+      </p>
+      <div class="hero-actions">
+        <a href="login.html" class="btn-primary">
+          <span>Start Application</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="#how-it-works" class="btn-secondary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="10"/>
-            <path d="M12 6v6l4 2"/>
+            <polygon points="10 8 16 12 10 16 10 8"/>
           </svg>
-        </div>
-        <h3>24/7 Availability</h3>
-        <p>Submit and track applications anytime, anywhere</p>
+          <span>See How It Works</span>
+        </a>
       </div>
-
-      <div class="feature-card fade-in-on-scroll">
-        <div class="feature-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-          </svg>
+      <div class="hero-stats">
+        <div class="stat-box">
+          <span class="stat-value" data-count="15000">0</span>
+          <span class="stat-label">Applications</span>
         </div>
-        <h3>Smart Analytics</h3>
-        <p>Data-driven insights for better admission decisions</p>
-      </div>
-
-      <div class="feature-card fade-in-on-scroll">
-        <div class="feature-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-          </svg>
+        <div class="stat-divider"></div>
+        <div class="stat-box">
+          <span class="stat-value" data-count="98">0</span>
+          <span class="stat-suffix">%</span>
+          <span class="stat-label">Success Rate</span>
         </div>
-        <h3>Secure & Compliant</h3>
-        <p>Bank-grade encryption for all your documents</p>
-      </div>
-    </div>
-
-    <!-- How It Works Section -->
-    <div class="how-it-works-section fade-in-on-scroll">
-      <h2 class="section-title">How It Works</h2>
-      <div class="steps-container">
-        <div class="step-card">
-          <div class="step-number">1</div>
-          <h3>Create Account</h3>
-          <p>Sign up using Google or create a traditional account</p>
-        </div>
-        <div class="step-arrow">&rarr;</div>
-        <div class="step-card">
-          <div class="step-number">2</div>
-          <h3>Submit Documents</h3>
-          <p>Upload academic records and required documents</p>
-        </div>
-        <div class="step-arrow">&rarr;</div>
-        <div class="step-card">
-          <div class="step-number">3</div>
-          <h3>AI Verification</h3>
-          <p>Instant verification and processing of application</p>
-        </div>
-        <div class="step-arrow">&rarr;</div>
-        <div class="step-card">
-          <div class="step-number">4</div>
-          <h3>Get Results</h3>
-          <p>Receive decision and track status in real-time</p>
+        <div class="stat-divider"></div>
+        <div class="stat-box">
+          <span class="stat-value" data-count="200">0</span>
+          <span class="stat-suffix">+</span>
+          <span class="stat-label">Partner Colleges</span>
         </div>
       </div>
     </div>
-
-    <!-- Stats Section -->
-    <div class="stats-section fade-in-on-scroll">
-      <div class="stat-item">
-        <div class="stat-number" data-target="10000">0</div>
-        <div class="stat-label">Applications Processed</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" data-target="95">0</div>
-        <div class="stat-label">Accuracy Rate %</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" data-target="150">0</div>
-        <div class="stat-label">Partner Institutions</div>
-      </div>
-    </div>
-
-    <!-- Testimonials -->
-    <div class="testimonials-section fade-in-on-scroll">
-      <h2 class="section-title">What Students Say</h2>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>"Gradly made my college application process incredibly smooth and fast!"</p>
-          <div class="testimonial-author">
-            <strong>Sarah Johnson</strong>
-            <span>Computer Science Student</span>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>"The automated processing saved us countless hours. Game-changer!"</p>
-          <div class="testimonial-author">
-            <strong>Dr. Michael Chen</strong>
-            <span>Admission Director</span>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>"Got accepted to my dream university! Highly recommend Gradly."</p>
-          <div class="testimonial-author">
-            <strong>Priya Sharma</strong>
-            <span>Engineering Student</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA Section -->
-    <div class="cta-section fade-in-on-scroll">
-      <h2>Ready to Transform Your Admission Journey?</h2>
-      <p>Join thousands of students securing their college admissions</p>
-      <a href="login1.html" class="btn primary large">
-        <span>Start Your Application Today</span>
-        <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
+    <div class="hero-scroll">
+      <div class="scroll-indicator">
+        <span>Scroll to explore</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
         </svg>
-      </a>
+      </div>
     </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h4>Gradly</h4>
-          <p>AI-powered college admissions</p>
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">Features</span>
+        <h2 class="section-title">Why Choose Gradly?</h2>
+        <p class="section-subtitle">Experience the future of college admissions with our cutting-edge platform</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="feature-icon-wrapper">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <h3>Instant Processing</h3>
+          <p>AI-powered document verification completes in seconds, not days. Upload your marksheet and get instant results.</p>
         </div>
-        <div class="footer-section">
-          <h4>Quick Links</h4>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-icon-wrapper blue">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h3>Smart Eligibility</h3>
+          <p>Automatic percentage calculation and eligibility checking against program cutoffs. Know instantly if you qualify.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-icon-wrapper purple">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <h3>Secure & Private</h3>
+          <p>Bank-grade encryption protects your documents and personal information. Your data is always safe with us.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-icon-wrapper orange">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <h3>24/7 Availability</h3>
+          <p>Apply anytime, anywhere. Our platform is always online, ready to process your applications round the clock.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">Process</span>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Four simple steps to your college admission</p>
+      </div>
+      <div class="steps-container">
+        <div class="step-item">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <div class="step-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <h3>Create Account</h3>
+            <p>Sign up with your email or Google account in just a few clicks</p>
+          </div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step-item">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <div class="step-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+            </div>
+            <h3>Upload Documents</h3>
+            <p>Upload your 12th marksheet for AI-powered verification</p>
+          </div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step-item">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <div class="step-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <h3>Check Eligibility</h3>
+            <p>Select your desired program and instantly check if you qualify</p>
+          </div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step-item">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <div class="step-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <h3>Submit & Track</h3>
+            <p>Submit your application and track status in real-time</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section class="programs-section" id="programs">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">Programs</span>
+        <h2 class="section-title">Available Programs</h2>
+        <p class="section-subtitle">Choose from a wide range of undergraduate and postgraduate programs</p>
+      </div>
+      <div class="programs-grid">
+        <div class="program-card">
+          <div class="program-header">
+            <h3>B.Tech CSE</h3>
+            <span class="program-cutoff">85% Cutoff</span>
+          </div>
+          <p>Computer Science & Engineering - 4 Years</p>
+          <ul class="program-features">
+            <li>AI & Machine Learning</li>
+            <li>Data Science</li>
+            <li>Cybersecurity</li>
+          </ul>
+        </div>
+        <div class="program-card">
+          <div class="program-header">
+            <h3>B.Tech IT</h3>
+            <span class="program-cutoff">80% Cutoff</span>
+          </div>
+          <p>Information Technology - 4 Years</p>
+          <ul class="program-features">
+            <li>Cloud Computing</li>
+            <li>Web Development</li>
+            <li>Network Security</li>
+          </ul>
+        </div>
+        <div class="program-card">
+          <div class="program-header">
+            <h3>BCA</h3>
+            <span class="program-cutoff">70% Cutoff</span>
+          </div>
+          <p>Bachelor of Computer Applications - 3 Years</p>
+          <ul class="program-features">
+            <li>Software Development</li>
+            <li>Database Management</li>
+            <li>Programming Fundamentals</li>
+          </ul>
+        </div>
+        <div class="program-card">
+          <div class="program-header">
+            <h3>MBA</h3>
+            <span class="program-cutoff">70% Cutoff</span>
+          </div>
+          <p>Master of Business Administration - 2 Years</p>
+          <ul class="program-features">
+            <li>Finance Management</li>
+            <li>Marketing</li>
+            <li>Human Resources</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-container">
+      <div class="cta-content">
+        <h2>Ready to Start Your Journey?</h2>
+        <p>Join thousands of students who have secured their college admissions through Gradly</p>
+        <a href="login.html" class="btn-primary large">
+          <span>Apply Now</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="gradly_logo_transparent.png" alt="Gradly Logo" class="footer-logo">
+        <p>AI-powered college admissions platform making education accessible to everyone.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Platform</h4>
           <a href="#features">Features</a>
-          <a href="login1.html">Login</a>
-          <a href="#">About</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#programs">Programs</a>
         </div>
-        <div class="footer-section">
+        <div class="footer-column">
           <h4>Support</h4>
           <a href="#">Help Center</a>
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
+          <a href="#">Contact Us</a>
+          <a href="#">FAQs</a>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Gradly. All rights reserved.</p>
-      </div>
-    </footer>
-  </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Gradly. All rights reserved.</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
